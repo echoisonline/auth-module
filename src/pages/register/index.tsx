@@ -9,9 +9,10 @@ import {
   ModalFooter,
 } from "@heroui/react";
 import { logo } from "../../shared/assets/logo-primary";
-import { detectCountry, userCountry } from "../../shared/lib/detectCountry";
+import { detectCountry } from "../../shared/lib/detectCountry";
 import { YandexAuthButton } from "../../shared/ui/YandexAuthButton";
 import { useNavigate } from "react-router-dom";
+import { useCountry } from "../../shared/context/CountryContext";
 
 function Register() {
   const navigate = useNavigate();
@@ -22,9 +23,14 @@ function Register() {
   const [employees, setEmployees] = useState("");
   const [businessType, setBusinessType] = useState("");
 
+  const { country, setCountry } = useCountry();
+
   useEffect(() => {
-    detectCountry;
-  });
+    detectCountry.then(() => {
+      const c = localStorage.getItem("userCountry");
+      if (c) setCountry(c);
+    });
+  }, [setCountry]);
 
   const isValidEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -61,7 +67,7 @@ function Register() {
           <img className="h-[60px]" src={logo} alt="" />
         </a>
         <h1 className="text-secondary">Создать учетную запись</h1>
-        {userCountry == "RU" ? (
+        {country == "RU" ? (
           <YandexAuthButton />
         ) : (
           <div className="h-[40px] w-[183px]">

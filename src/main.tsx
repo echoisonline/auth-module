@@ -7,20 +7,23 @@ import Home from "./pages/home";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import { makeServer } from "./mirage/server";
+import { CountryProvider } from "./shared/context/CountryContext";
 if (import.meta.env.DEV) makeServer();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <HeroUIProvider>
-      <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </BrowserRouter>
-      </main>
-    </HeroUIProvider>
+    <CountryProvider>
+      <HeroUIProvider>
+        <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </BrowserRouter>
+        </main>
+      </HeroUIProvider>
+    </CountryProvider>
   </React.StrictMode>
 );

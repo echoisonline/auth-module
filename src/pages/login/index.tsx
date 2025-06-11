@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { logo } from "../../shared/assets/logo-primary";
-import { detectCountry, userCountry } from "../../shared/lib/detectCountry";
+import { detectCountry } from "../../shared/lib/detectCountry";
 import { YandexAuthButton } from "../../shared/ui/YandexAuthButton";
 import { useNavigate } from "react-router-dom";
+import { useCountry } from "../../shared/context/CountryContext";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { country, setCountry } = useCountry();
+
+  useEffect(() => {
+    detectCountry.then(() => {
+      const c = localStorage.getItem("userCountry");
+      if (c) setCountry(c);
+    });
+  }, [setCountry]);
 
   const handleLogin = async () => {
     try {
@@ -28,17 +37,13 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    detectCountry;
-  });
-
   return (
     <div className="w-[480px]">
       <div className="flex flex-col gap-y-4 mb-6 items-center text-center">
         <a className="mb-6" href="/">
           <img className="h-[60px]" src={logo} alt="" />
         </a>
-        {userCountry == "RU" ? (
+        {country == "RU" ? (
           <YandexAuthButton />
         ) : (
           <div className="h-[40px] w-[183px]">
