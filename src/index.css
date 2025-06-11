@@ -1,1 +1,19 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 17.5px;
+  font-weight: 500;
+}
+
+.agreement__buttons {
+  color: #3f4651;
+}

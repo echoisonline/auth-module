@@ -1,11 +1,31 @@
-import { Button, Link } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { useNavigate } from "react-router-dom";
+import { createNavigateHandler } from "../../shared/lib/navigation";
+import { logo } from "../../shared/lib/assets/logo-primary";
 
 function Home() {
+  const navigate = useNavigate();
+  const handleNavigate = createNavigateHandler(navigate);
+
   return (
-    <div className="h-screen">
-      <Button color="primary" variant="solid">
-        Solidasda
-      </Button>
+    <div className="flex flex-col gap-x-4 p-[15px]">
+      <img className="h-[60px] mb-6" src={logo} alt="" />
+      <div>
+        <Button
+          onPress={handleNavigate("register")}
+          color="primary"
+          variant="solid"
+        >
+          Зарегестрироваться
+        </Button>
+        <Button
+          onPress={handleNavigate("login")}
+          color="primary"
+          variant="solid"
+        >
+          Войти
+        </Button>
+      </div>
     </div>
   );
 }
