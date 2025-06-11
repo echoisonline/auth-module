@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Suspense
       fallback={
         <div className="flex w-screen h-screen justify-center items-center">
-          <img src="../public/suspense.gif" className="mx-auto" />
+          <img src="/suspense.gif" className="mx-auto" />
         </div>
       }
     >
