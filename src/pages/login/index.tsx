@@ -38,7 +38,7 @@ function Login() {
   };
 
   return (
-    <div className="w-[480px]">
+    <div className="max-w-[640px] w-[80%]">
       <div className="flex flex-col gap-y-4 mb-6 items-center text-center">
         <a className="mb-6" href="/">
           <img className="h-[60px]" src={logo} alt="" />

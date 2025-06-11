@@ -61,7 +61,7 @@ function Register() {
   };
 
   return (
-    <div className="max-w-screen w-[80%] lg:w-[900px]">
+    <div className="max-w-[640px] w-[80%]">
       <div className="flex flex-col gap-y-4 mb-6 items-center text-center">
         <a className="mb-6" href="/">
           <img className="h-[60px]" src={logo} alt="" />
