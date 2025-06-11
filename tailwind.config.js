@@ -24,8 +24,8 @@ export const plugins = [
             700: "#8a8a8c",
             800: "#656567",
             900: "#404041",
-            foreground: "#ffffff",
-            DEFAULT: "#d4d4d8",
+            foreground: "#353c48",
+            DEFAULT: "#353c48",
           },
           primary: {
             50: "#e3f6ff",

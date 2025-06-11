@@ -1,36 +1,32 @@
-import { Button } from "@heroui/react";
+import { Button, ButtonGroup } from "@heroui/react";
 import { useNavigate } from "react-router-dom";
 import { createNavigateHandler } from "../../shared/lib/navigation";
-import { logo } from "../../shared/lib/assets/logo-primary";
-import { useEffect } from "react";
-import { detectCountry } from "../../shared/lib/detectCountry";
+import { logo } from "../../shared/assets/logo-primary";
 
 function Home() {
   const navigate = useNavigate();
   const handleNavigate = createNavigateHandler(navigate);
 
-  useEffect(() => {
-    detectCountry;
-  });
-
   return (
-    <div className="flex flex-col gap-x-4 p-[15px]">
+    <div className="flex flex-col items-center gap-x-4 p-[15px]">
       <img className="h-[60px] mb-6" src={logo} alt="" />
       <div>
-        <Button
-          onPress={handleNavigate("register")}
-          color="primary"
-          variant="solid"
-        >
-          Зарегестрироваться
-        </Button>
-        <Button
-          onPress={handleNavigate("login")}
-          color="primary"
-          variant="solid"
-        >
-          Войти
-        </Button>
+        <ButtonGroup>
+          <Button
+            onPress={handleNavigate("register")}
+            color="primary"
+            variant="solid"
+          >
+            Зарегестрироваться
+          </Button>
+          <Button
+            onPress={handleNavigate("login")}
+            color="primary"
+            variant="solid"
+          >
+            Войти
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   );

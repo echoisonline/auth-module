@@ -1,6 +1,4 @@
-import React from "react";
-
-const CLIENT_ID = "ТВОЙ_CLIENT_ID";
+const CLIENT_ID = "";
 const REDIRECT_URI = "https://your-site.com/auth/callback";
 
 function generateState(): string {

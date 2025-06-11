@@ -6,6 +6,8 @@ import "./index.css";
 import Home from "./pages/home";
 import Register from "./pages/register";
 import Login from "./pages/login";
+import { makeServer } from "./mirage/server";
+if (import.meta.env.DEV) makeServer();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

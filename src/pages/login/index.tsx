@@ -1,9 +1,37 @@
+import { useEffect, useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { logo } from "../../shared/lib/assets/logo-primary";
-import { userCountry } from "../../shared/lib/detectCountry";
-import { YandexAuthButton } from "../../shared/lib/ui/YandexAuthButton";
+import { logo } from "../../shared/assets/logo-primary";
+import { detectCountry, userCountry } from "../../shared/lib/detectCountry";
+import { YandexAuthButton } from "../../shared/ui/YandexAuthButton";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      if (!res.ok) throw new Error("Ошибка авторизации");
+
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    detectCountry;
+  });
+
   return (
     <div className="w-[480px]">
       <div className="flex flex-col gap-y-4 mb-6 items-center text-center">
@@ -44,15 +72,20 @@ function Login() {
           variant="bordered"
           label="Email адрес"
           labelPlacement="outside"
-        ></Input>
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <Input
-        type=""
+          type="password"
           radius="none"
           placeholder="Введите пароль..."
           variant="bordered"
           label="Пароль"
           labelPlacement="outside"
-        ></Input>
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {error && <p className="text-danger-500 mt-2">{error}</p>}
       </div>
       <div className="text-center">
         <Button
@@ -60,10 +93,16 @@ function Login() {
           className="w-full mb-4"
           color="primary"
           variant="solid"
+          onPress={handleLogin}
         >
           Войти
         </Button>
-        <Button className="w-full mb-4" color="primary" variant="ghost">
+        <Button
+          className="w-full mb-4"
+          color="primary"
+          variant="ghost"
+          onPress={() => navigate("/register")}
+        >
           Регистрация
         </Button>
         <a href="">Забыл пароль</a>
