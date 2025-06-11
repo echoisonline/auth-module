@@ -1,29 +1,38 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HeroUIProvider } from "@heroui/react";
 import "./index.css";
-import Home from "./pages/home";
-import Register from "./pages/register";
-import Login from "./pages/login";
 import { makeServer } from "./mirage/server";
 import { CountryProvider } from "./shared/context/CountryContext";
 if (import.meta.env.DEV) makeServer();
 
+const Home = lazy(() => import("./pages/home"));
+const Register = lazy(() => import("./pages/register"));
+const Login = lazy(() => import("./pages/login"));
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <CountryProvider>
-      <HeroUIProvider>
-        <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </BrowserRouter>
-        </main>
-      </HeroUIProvider>
-    </CountryProvider>
+    <Suspense
+      fallback={
+        <div className="flex w-screen h-screen justify-center items-center">
+          <img src="../public/suspense.gif" className="mx-auto" />
+        </div>
+      }
+    >
+      <CountryProvider>
+        <HeroUIProvider>
+          <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </BrowserRouter>
+          </main>
+        </HeroUIProvider>
+      </CountryProvider>
+    </Suspense>
   </React.StrictMode>
 );
