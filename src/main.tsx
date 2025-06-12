@@ -5,6 +5,7 @@ import { HeroUIProvider } from "@heroui/react";
 import "./index.css";
 import { makeServer } from "./mirage/server";
 import { CountryProvider } from "./shared/context/CountryContext";
+import { Spinner } from "@heroui/spinner";
 makeServer();
 
 const Home = lazy(() => import("./pages/home"));
@@ -17,8 +18,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Suspense
       fallback={
-        <div className="flex w-screen h-screen justify-center items-center">
-          <img src="/auth-module/suspense.gif" className="mx-auto" />
+        <div className="flex h-screen justify-center">
+          <Spinner />
         </div>
       }
     >

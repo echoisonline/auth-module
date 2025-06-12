@@ -22,7 +22,6 @@ function Register() {
   const [company, setCompany] = useState("");
   const [employees, setEmployees] = useState("");
   const [businessType, setBusinessType] = useState("");
-
   const { country, setCountry } = useCountry();
 
   useEffect(() => {
@@ -95,7 +94,6 @@ function Register() {
         <Input
           type="email"
           required
-          radius="none"
           className="mb-12"
           placeholder="Введите Email..."
           variant="bordered"
@@ -105,7 +103,6 @@ function Register() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          radius="none"
           placeholder="Введите Телефон..."
           variant="bordered"
           label="Телефон"
@@ -148,7 +145,7 @@ function Register() {
         </Button>
         <div className="text-center">
           У вас уже есть учётная запись?{" "}
-          <a className="text-primary" href="/login">
+          <a className="text-primary" href="/auth-module/login">
             Войти
           </a>
         </div>

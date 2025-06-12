@@ -71,7 +71,6 @@ function Login() {
         <Input
           type="email"
           required
-          radius="none"
           className="mb-12"
           placeholder="Введите Email..."
           variant="bordered"
@@ -82,7 +81,6 @@ function Login() {
         />
         <Input
           type="password"
-          radius="none"
           placeholder="Введите пароль..."
           variant="bordered"
           label="Пароль"
