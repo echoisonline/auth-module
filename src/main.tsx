@@ -5,7 +5,7 @@ import { HeroUIProvider } from "@heroui/react";
 import "./index.css";
 import { makeServer } from "./mirage/server";
 import { CountryProvider } from "./shared/context/CountryContext";
-if (import.meta.env.DEV) makeServer();
+makeServer();
 
 const Home = lazy(() => import("./pages/home"));
 const Register = lazy(() => import("./pages/register"));
