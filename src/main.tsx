@@ -11,6 +11,8 @@ const Home = lazy(() => import("./pages/home"));
 const Register = lazy(() => import("./pages/register"));
 const Login = lazy(() => import("./pages/login"));
 
+const basename = import.meta.env.DEV ? "/auth-module/" : "/";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Suspense
@@ -23,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <CountryProvider>
         <HeroUIProvider>
           <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
-            <BrowserRouter basename="/auth-module/">
+            <BrowserRouter basename={basename}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
