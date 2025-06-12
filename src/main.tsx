@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <CountryProvider>
         <HeroUIProvider>
           <main className="light text-foreground bg-background w-full h-screen flex justify-center items-center">
-            <BrowserRouter basename="/auth-module">
+            <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
