@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: process.env.VITE_BASEPATH || "/auth-module",
+  base: process.env.VITE_BASEPATH || "/auth-module/",
   build: {
     rollupOptions: {
       output: {
