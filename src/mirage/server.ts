@@ -2,8 +2,11 @@ import { createServer, Response } from "miragejs";
 
 export function makeServer() {
   return createServer({
+    environment: "production",
     routes() {
       this.namespace = "api";
+      this.passthrough("https://ipinfo.io/**");
+      this.passthrough();
 
       this.post("/login", (_schema, request) => {
         const { email, password } = JSON.parse(request.requestBody);
